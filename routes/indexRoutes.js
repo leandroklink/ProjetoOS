@@ -1,11 +1,11 @@
-//tela routes/pcm
+//tela routes/indexRoutes
 
 const express = require('express')
 const router = express.Router() 
 
 
 router.get('/', (req, res) => {
-    console.log('teste')
+    res.status(200).render('index')
 })
 
 //404

@@ -1,7 +1,12 @@
 const express = require('express');
 const path = require('path')
-const app = express();
 const port = 3000;
+const app = express();
+const routes = require('./routes/indexRoutes')
+const authRoutes = require('./routes/auth')
+const osRoutes = require('./routes/os')
+const pcmRoutes = require('./routes/pcm')
+
 
 
 app.use(express.urlencoded({ extended: true })) //usar parser extended
@@ -9,8 +14,12 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(express.json()); //configuracao para usar json
 
-app.get('/', (req, res) => {
-    res.render('index')});
+app.use('/', routes);
+app.use('/auth', authRoutes);
+app.use('/os', osRoutes);
+app.use('/pcm', pcmRoutes);
+
+
 
 
 app.listen(port, () => {
